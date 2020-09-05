@@ -64,7 +64,7 @@ const TasksPage = (props) => {
           </form>
           )}
      </div>
-     <div className="row d-flex justify-content-center position-relative">
+     <div className=" card row d-flex justify-content-center position-relative">
        {renderTaskLists()}
      </div>
     </div>
