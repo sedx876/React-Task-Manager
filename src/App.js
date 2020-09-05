@@ -1,17 +1,26 @@
 import React from 'react';
 import './styles/App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+//import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootswatch/dist/cyborg/bootstrap.min.css'
 import Task from './components/Task'
 import TasksList from './components/TasksList'
 import TasksPage from './components/TasksPage'
+import {connect} from 'react-redux'
 
-function App() {
+
+function App(props) {
   return (
     <div className="App">
       
-      <TasksPage />
+      <TasksPage tasks={props.tasks} />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    tasks: state.tasks
+  }
+}
+
+export default connect(mapStateToProps) (App);
