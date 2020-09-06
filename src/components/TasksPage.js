@@ -17,6 +17,21 @@ const TasksPage = (props) => {
     setDescription(e.target.value)
   }
 
+  const onCreateTask = (e) => {
+    e.preventDefault();
+    props.onCreateTask({
+      title,
+      description,
+    });
+    resetForm();
+  };
+
+  const resetForm = () => {
+    setTitle("");
+    setDescription("");
+    formToggler(false);
+  };
+
   const formToggler = () => {
     showCardForm(!cardForm)
   }
@@ -50,7 +65,7 @@ const TasksPage = (props) => {
         </div>
           {/*Input Form */}
           {cardForm && (
-          <form>
+          <form onSubmit={onCreateTask}>
           <div className="form-group">
           <input type="text" 
           className="form-control" 
