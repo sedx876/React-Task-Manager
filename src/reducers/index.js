@@ -16,6 +16,12 @@ const initialState = [
     title: 'Learn MoRe',
     description: "Again and again",
     status: 'Unstarted'
+  },
+  {
+    id: 4,
+    title: 'Learn Rails',
+    description: "More and More",
+    status: 'Unstarted'
   }
 ]
 
