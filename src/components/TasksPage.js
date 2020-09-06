@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from "prop-types";
 import TasksList from './TasksList'
 
 
@@ -46,7 +47,8 @@ const TasksPage = (props) => {
         key={status} 
         status={status} 
         tasks={statusTasks} 
-        onStatusChange={props.onStatusChange} />
+        onStatusChange={props.onStatusChange}
+        onDeleteTask={props.onDeleteTask} />
         </div>
       )
     })
@@ -57,37 +59,60 @@ const TasksPage = (props) => {
       <div className="jumbotron py-3">
         <div className="row">
           <div className="col-md-2">
-            <button className="btn btn-success m-3" onClick={formToggler}>+</button>
+            <div
+              className="btn btn-success m-3"
+              style={{ borderRadius: "50%", fontSize: "1rem" }}
+              onClick={formToggler}
+            >
+              +
+            </div>
           </div>
           <div className="col-md-10">
-            <h2 className="display-4 text-center text-uppercase">Task Manager</h2>
+            <div className="display-4 text-center text-uppercase">
+              Task Manager
+            </div>
           </div>
         </div>
-          {/*Input Form */}
-          {cardForm && (
+        {cardForm && (
           <form onSubmit={onCreateTask}>
-          <div className="form-group">
-          <input type="text" 
-          className="form-control" 
-          placeholder="Task Title"
-          onChange={onChangeTitle} />
-          </div>
-          <div className="form-group">
-            <textarea type="text" 
-            className="form-control" 
-            placeholder="Task Description"
-            onChange={onChangeDescription}>
-            </textarea>
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter Task"
+                onChange={onChangeTitle}
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                className="form-control"
+                rows="3"
+                placeholder="Task Description"
+                onChange={onChangeDescription}
+              ></textarea>
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
           </form>
-          )}
-     </div>
-     <div className=" card row d-flex justify-content-center position-relative">
-       {renderTaskLists()}
-     </div>
+        )}
+      </div>
+      <div
+        className="row d-flex justify-content-center position-relative"
+        style={{ background: "#e9ecef" }}
+      >
+        {renderTaskLists()}
+      </div>
     </div>
-  )
-}
+  );
+};
+
+TasksPage.propTypes = {
+  cardForm: PropTypes.bool,
+  title: PropTypes.string,
+  description: PropTypes.string,
+};
+
 
 export default TasksPage
