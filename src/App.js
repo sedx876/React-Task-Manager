@@ -6,13 +6,20 @@ import Task from './components/Task'
 import TasksList from './components/TasksList'
 import TasksPage from './components/TasksPage'
 import {connect} from 'react-redux'
+import {editTask} from './actions'
 
 
 function App(props) {
+
+  const onStatusChange = (id, status) => {
+    props.dispatch(editTask(id, { status }));
+  };
+
   return (
     <div className="App">
       
-      <TasksPage tasks={props.tasks} />
+      <TasksPage tasks={props.tasks} 
+      onStatusChange={onStatusChange} />
     </div>
   );
 }
